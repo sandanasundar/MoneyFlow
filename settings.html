@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyFlow - Settings</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script defer src="js/app.js"></script>
+    <script defer src="js/settings.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="logo">
+        <h1>MoneyFlow</h1>
+    </div>
+</header>
+
+<nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="history.html">History</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="savings.html">Savings</a>
+    <a href="settings.html" class="active">Settings</a>
+</nav>
+
+<main class="container">
+
+    <!-- Backup Section -->
+
+    <section class="glass-card">
+
+        <h2>Backup & Restore</h2>
+
+        <p class="transaction-meta">
+            Export your financial data regularly to avoid data loss.
+        </p>
+
+        <br>
+
+        <div class="filters">
+
+            <button
+                id="exportBtn"
+                class="primary-btn">
+                Export JSON Backup
+            </button>
+
+            <label
+                for="importFile"
+                class="secondary-btn text-center"
+                style="display:block;">
+                Select Backup File
+            </label>
+
+            <input
+                type="file"
+                id="importFile"
+                accept=".json"
+                hidden>
+
+            <button
+                id="importBtn"
+                class="secondary-btn">
+                Import Backup
+            </button>
+
+        </div>
+
+        <br>
+
+        <div id="backupStatus"
+             class="success-message hidden">
+        </div>
+
+        <div id="backupError"
+             class="error-message hidden">
+        </div>
+
+    </section>
+
+    <!-- Statistics -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+            <h3>Total Transactions</h3>
+            <h2 id="settingsTransactionCount">
+                0
+            </h2>
+        </div>
+
+        <div class="summary-card">
+            <h3>Total Savings Goals</h3>
+            <h2 id="settingsGoalCount">
+                0
+            </h2>
+        </div>
+
+        <div class="summary-card">
+            <h3>Last Backup</h3>
+            <h2 id="lastBackupDisplay">
+                Never
+            </h2>
+        </div>
+
+    </section>
+
+    <!-- Data Management -->
+
+    <section class="glass-card">
+
+        <h2>Data Management</h2>
+
+        <p class="transaction-meta">
+            These actions cannot be undone.
+        </p>
+
+        <br>
+
+        <div class="filters">
+
+            <button
+                id="clearTransactionsBtn"
+                class="danger-btn">
+                Clear Transactions
+            </button>
+
+            <button
+                id="clearGoalsBtn"
+                class="danger-btn">
+                Clear Savings Goals
+            </button>
+
+            <button
+                id="resetAppBtn"
+                class="danger-btn">
+                Reset Entire App
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- Confirmation Modal -->
+
+<div id="settingsConfirmModal"
+     class="modal hidden">
+
+    <div class="modal-content">
+
+        <h3>Confirm Action</h3>
+
+        <p id="settingsConfirmText">
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                id="settingsCancelBtn"
+                class="secondary-btn">
+                Cancel
+            </button>
+
+            <button
+                id="settingsConfirmBtn"
+                class="danger-btn">
+                Confirm
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

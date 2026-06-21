@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyFlow - Savings Goals</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script defer src="js/app.js"></script>
+    <script defer src="js/savings.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="logo">
+        <h1>MoneyFlow</h1>
+    </div>
+</header>
+
+<nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="history.html">History</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="savings.html" class="active">Savings</a>
+    <a href="settings.html">Settings</a>
+</nav>
+
+<main class="container">
+
+    <!-- Create Goal -->
+
+    <section class="glass-card">
+
+        <h2>Create Savings Goal</h2>
+
+        <form id="goalForm">
+
+            <div class="form-group">
+                <label for="goalName">
+                    Goal Name
+                </label>
+
+                <input
+                    type="text"
+                    id="goalName"
+                    required
+                    maxlength="100"
+                    placeholder="Laptop Fund"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="goalTarget">
+                    Target Amount (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="goalTarget"
+                    min="0.01"
+                    step="0.01"
+                    required
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="primary-btn">
+                Create Goal
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- Summary -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+            <h3>Total Goals</h3>
+            <h2 id="goalCount">
+                0
+            </h2>
+        </div>
+
+        <div class="summary-card">
+            <h3>Total Saved</h3>
+            <h2 id="totalSaved">
+                ₹0.00
+            </h2>
+        </div>
+
+        <div class="summary-card">
+            <h3>Total Target</h3>
+            <h2 id="totalTarget">
+                ₹0.00
+            </h2>
+        </div>
+
+    </section>
+
+    <!-- Goals Container -->
+
+    <section>
+
+        <div id="goalsContainer">
+
+            <div class="empty-state">
+                No savings goals yet.
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- Edit Goal Modal -->
+
+<div id="editGoalModal"
+     class="modal hidden">
+
+    <div class="modal-content">
+
+        <h3>Edit Goal</h3>
+
+        <form id="editGoalForm">
+
+            <input
+                type="hidden"
+                id="editGoalId">
+
+            <div class="form-group">
+
+                <label>Name</label>
+
+                <input
+                    type="text"
+                    id="editGoalName"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Target Amount</label>
+
+                <input
+                    type="number"
+                    id="editGoalTarget"
+                    min="0.01"
+                    step="0.01"
+                    required>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="closeGoalEdit"
+                    class="secondary-btn">
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+                    Save
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- Delete Goal Modal -->
+
+<div id="deleteGoalModal"
+     class="modal hidden">
+
+    <div class="modal-content">
+
+        <h3>Delete Goal</h3>
+
+        <p>
+            This action cannot be undone.
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                id="cancelGoalDelete"
+                class="secondary-btn">
+                Cancel
+            </button>
+
+            <button
+                id="confirmGoalDelete"
+                class="danger-btn">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

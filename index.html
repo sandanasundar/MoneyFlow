@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyFlow - Personal Finance Tracker</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script defer src="js/app.js"></script>
+</head>
+<body>
+
+    <!-- Header -->
+
+    <header class="topbar">
+        <div class="logo">
+            <h1>MoneyFlow</h1>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+        <a href="index.html" class="active">Home</a>
+        <a href="history.html">History</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="savings.html">Savings</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <!-- Main Container -->
+
+    <main class="container">
+
+        <!-- Backup Warning -->
+
+        <section id="backupReminder" class="warning-card hidden">
+            <p>
+                ⚠ You have not backed up your financial data in 30 days.
+            </p>
+        </section>
+
+        <!-- Summary Cards -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+                <h3>Current Balance</h3>
+                <h2 id="currentBalance">₹0.00</h2>
+            </div>
+
+            <div class="summary-card income">
+                <h3>Total Income</h3>
+                <h2 id="totalIncome">₹0.00</h2>
+            </div>
+
+            <div class="summary-card expense">
+                <h3>Total Expense</h3>
+                <h2 id="totalExpense">₹0.00</h2>
+            </div>
+
+        </section>
+
+        <!-- Transaction Form -->
+
+        <section class="glass-card">
+
+            <h2>Add Transaction</h2>
+
+            <form id="transactionForm" novalidate>
+
+                <!-- Date -->
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input
+                        type="date"
+                        id="date"
+                        required
+                        aria-label="Transaction Date"
+                    >
+                </div>
+
+                <!-- Type -->
+
+                <div class="form-group">
+                    <label for="type">Transaction Type</label>
+
+                    <select
+                        id="type"
+                        required
+                        aria-label="Transaction Type"
+                    >
+                        <option value="">Select</option>
+                        <option value="Income">Income</option>
+                        <option value="Expense">Expense</option>
+                    </select>
+                </div>
+
+                <!-- Amount -->
+
+                <div class="form-group">
+                    <label for="amount">Amount (₹)</label>
+
+                    <input
+                        type="number"
+                        id="amount"
+                        min="0.01"
+                        step="0.01"
+                        placeholder="0.00"
+                        required
+                        aria-label="Amount"
+                    >
+                </div>
+
+                <!-- Category -->
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+
+                    <select
+                        id="category"
+                        required
+                        aria-label="Category"
+                    >
+                    </select>
+                </div>
+
+                <!-- Custom Category -->
+
+                <div class="form-group">
+                    <label for="newCategory">
+                        Add Custom Category
+                    </label>
+
+                    <div class="inline-row">
+
+                        <input
+                            type="text"
+                            id="newCategory"
+                            placeholder="Category name"
+                            aria-label="New Category"
+                        >
+
+                        <button
+                            type="button"
+                            id="addCategoryBtn"
+                            class="secondary-btn"
+                        >
+                            Add
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+
+                <div class="form-group">
+                    <label for="method">Payment Method</label>
+
+                    <select
+                        id="method"
+                        required
+                        aria-label="Payment Method"
+                    >
+                        <option value="">Select</option>
+
+                        <option value="UPI">UPI</option>
+                        <option value="GPay">GPay</option>
+                        <option value="PhonePe">PhonePe</option>
+                        <option value="Paytm">Paytm</option>
+                        <option value="Amazon Pay">Amazon Pay</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Debit Card">Debit Card</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Notes -->
+
+                <div class="form-group">
+                    <label for="note">Notes</label>
+
+                    <textarea
+                        id="note"
+                        rows="4"
+                        maxlength="300"
+                        placeholder="Optional notes"
+                        aria-label="Transaction Notes"
+                    ></textarea>
+                </div>
+
+                <!-- Error Message -->
+
+                <div
+                    id="formError"
+                    class="error-message hidden"
+                    role="alert"
+                ></div>
+
+                <!-- Success Message -->
+
+                <div
+                    id="formSuccess"
+                    class="success-message hidden"
+                ></div>
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    id="saveTransactionBtn"
+                    class="primary-btn"
+                >
+                    Save Transaction
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Recent Transactions -->
+
+        <section class="glass-card">
+
+            <div class="section-header">
+
+                <h2>Recent Transactions</h2>
+
+                <a href="history.html" class="view-all">
+                    View All
+                </a>
+
+            </div>
+
+            <div id="recentTransactions">
+
+                <div class="empty-state">
+                    No transactions yet.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Delete Confirmation Modal -->
+
+    <div
+        id="confirmModal"
+        class="modal hidden"
+        aria-hidden="true"
+    >
+        <div class="modal-content">
+
+            <h3>Confirm Action</h3>
+
+            <p id="modalMessage"></p>
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancelModalBtn"
+                    class="secondary-btn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="confirmModalBtn"
+                    class="danger-btn"
+                >
+                    Confirm
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

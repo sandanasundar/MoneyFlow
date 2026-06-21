@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyFlow - Analytics</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script defer src="js/app.js"></script>
+    <script defer src="js/analytics.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="logo">
+        <h1>MoneyFlow</h1>
+    </div>
+</header>
+
+<nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="history.html">History</a>
+    <a href="analytics.html" class="active">Analytics</a>
+    <a href="savings.html">Savings</a>
+    <a href="settings.html">Settings</a>
+</nav>
+
+<main class="container">
+
+    <!-- Date Filter -->
+
+    <section class="glass-card">
+
+        <h2>Analytics Filters</h2>
+
+        <div class="filters">
+
+            <select id="analyticsRange">
+
+                <option value="thisMonth">
+                    This Month
+                </option>
+
+                <option value="lastMonth">
+                    Last Month
+                </option>
+
+                <option value="thisYear">
+                    This Year
+                </option>
+
+                <option value="allTime">
+                    All Time
+                </option>
+
+                <option value="custom">
+                    Custom Range
+                </option>
+
+            </select>
+
+            <input
+                type="date"
+                id="startDate"
+            >
+
+            <input
+                type="date"
+                id="endDate"
+            >
+
+        </div>
+
+    </section>
+
+    <!-- Analytics Summary -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+            <h3>Total Income</h3>
+            <h2 id="analyticsIncome">
+                ₹0.00
+            </h2>
+        </div>
+
+        <div class="summary-card expense">
+            <h3>Total Expense</h3>
+            <h2 id="analyticsExpense">
+                ₹0.00
+            </h2>
+        </div>
+
+        <div class="summary-card">
+            <h3>Current Balance</h3>
+            <h2 id="analyticsBalance">
+                ₹0.00
+            </h2>
+        </div>
+
+        <div class="summary-card">
+            <h3>Savings Goals</h3>
+            <h2 id="analyticsSavingsGoals">
+                0
+            </h2>
+        </div>
+
+        <div class="summary-card">
+            <h3>Transactions</h3>
+            <h2 id="analyticsTransactions">
+                0
+            </h2>
+        </div>
+
+    </section>
+
+    <!-- Insights -->
+
+    <section class="glass-card">
+
+        <h2>Insights</h2>
+
+        <div id="insightsContainer">
+
+            <div class="empty-state">
+                No insights available.
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Statistics -->
+
+    <section class="glass-card">
+
+        <h2>Statistics</h2>
+
+        <div class="filters">
+
+            <div>
+                <strong>Most Spent Category</strong>
+                <p id="mostSpentCategory">
+                    -
+                </p>
+            </div>
+
+            <div>
+                <strong>Least Spent Category</strong>
+                <p id="leastSpentCategory">
+                    -
+                </p>
+            </div>
+
+            <div>
+                <strong>Most Used Method</strong>
+                <p id="mostUsedMethod">
+                    -
+                </p>
+            </div>
+
+            <div>
+                <strong>Largest Expense</strong>
+                <p id="largestExpense">
+                    -
+                </p>
+            </div>
+
+            <div>
+                <strong>Largest Income</strong>
+                <p id="largestIncome">
+                    -
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Charts -->
+
+    <section class="chart-card">
+
+        <h2>Expense Categories</h2>
+
+        <div class="chart-container">
+            <canvas id="expensePieChart"></canvas>
+        </div>
+
+    </section>
+
+    <section class="chart-card">
+
+        <h2>Payment Methods</h2>
+
+        <div class="chart-container">
+            <canvas id="methodPieChart"></canvas>
+        </div>
+
+    </section>
+
+    <section class="chart-card">
+
+        <h2>Monthly Expenses</h2>
+
+        <div class="chart-container">
+            <canvas id="monthlyExpenseChart"></canvas>
+        </div>
+
+    </section>
+
+    <section class="chart-card">
+
+        <h2>Monthly Income</h2>
+
+        <div class="chart-container">
+            <canvas id="monthlyIncomeChart"></canvas>
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>
